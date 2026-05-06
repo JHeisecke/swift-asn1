@@ -84,7 +84,7 @@ extension ASN1 {
         @usableFromInline
         var dataBytes: ArraySlice<UInt8>?
 
-        @inlinable
+        @usableFromInline
         init(
             identifier: ASN1Identifier,
             depth: Int,
@@ -134,7 +134,7 @@ extension ASN1 {
         @usableFromInline
         var nodes: ArraySlice<ParserNode>
 
-        @inlinable
+        @usableFromInline
         init(_ nodes: ArraySlice<ParserNode>) {
             self.nodes = nodes
         }
@@ -285,7 +285,7 @@ extension ASN1 {
                 wrapped.next()
             }
 
-            @inlinable
+            @usableFromInline
             init(_ wrapped: WrappedSequence.Iterator) {
                 self.wrapped = wrapped
             }
@@ -294,7 +294,6 @@ extension ASN1 {
         @usableFromInline
         var wrapped: WrappedSequence
 
-        @inlinable
         init(_ wrapped: WrappedSequence) {
             self.wrapped = wrapped
         }
@@ -324,7 +323,7 @@ public struct ASN1NodeCollection {
 
     @usableFromInline var _depth: Int
 
-    @inlinable
+    @usableFromInline
     init(nodes: ArraySlice<ASN1.ParserNode>, depth: Int) {
         self._nodes = nodes
         self._depth = depth
@@ -349,7 +348,7 @@ extension ASN1NodeCollection: Sequence {
         @usableFromInline
         var _depth: Int
 
-        @inlinable
+        @usableFromInline
         init(nodes: ArraySlice<ASN1.ParserNode>, depth: Int) {
             self._nodes = nodes
             self._depth = depth
@@ -408,8 +407,8 @@ public struct ASN1Node: Hashable, Sendable {
     /// This is principally intended for diagnostic purposes.
     public var encodedBytes: ArraySlice<UInt8>
 
-    @inlinable
-    internal init(
+    @usableFromInline
+    init(
         identifier: ASN1Identifier,
         content: ASN1Node.Content,
         encodedBytes: ArraySlice<UInt8>

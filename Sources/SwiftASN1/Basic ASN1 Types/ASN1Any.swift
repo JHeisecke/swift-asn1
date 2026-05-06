@@ -46,7 +46,6 @@ public struct ASN1Any: DERParseable, BERParseable, DERSerializable, BERSerializa
         self._serializedBytes = ArraySlice(serializer._serializedBytes)
     }
 
-    @inlinable
     public init(derEncoded rootNode: ASN1Node) {
         // This is a bit sad: we just re-serialize this data. In an ideal world
         // we'd update the parse representation so that all nodes can point at their
