@@ -32,6 +32,7 @@ public struct ASN1Null: DERImplicitlyTaggable, BERImplicitlyTaggable, Hashable, 
         guard content.count == 0 else {
             throw ASN1Error.invalidASN1Object(reason: "ASN1Null must be empty, received \(content.count) bytes")
         }
+        self = .init()
     }
 
     @inlinable
