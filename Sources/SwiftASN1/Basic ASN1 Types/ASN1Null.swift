@@ -20,7 +20,6 @@ public struct ASN1Null: DERImplicitlyTaggable, BERImplicitlyTaggable, Hashable, 
     }
 
     /// Construct a new ASN.1 null.
-    @inlinable
     public init() {}
 
     @inlinable
