@@ -23,6 +23,11 @@ public struct ASN1Any: DERParseable, BERParseable, DERSerializable, BERSerializa
     @usableFromInline
     var _serializedBytes: ArraySlice<UInt8>
 
+    @usableFromInline
+    init(_serializedBytes: ArraySlice<UInt8>) {
+        self._serializedBytes = _serializedBytes
+    }
+
     /// Create an ``ASN1Any`` from a serializable ASN1 type.
     ///
     /// - parameters:
@@ -31,7 +36,7 @@ public struct ASN1Any: DERParseable, BERParseable, DERSerializable, BERSerializa
     public init<ASN1Type: DERSerializable>(erasing: ASN1Type) throws {
         var serializer = DER.Serializer()
         try erasing.serialize(into: &serializer)
-        self._serializedBytes = ArraySlice(serializer._serializedBytes)
+        self.init(_serializedBytes: ArraySlice(serializer._serializedBytes))
     }
 
     /// Create an ``ASN1Any`` from a serializable implicitly taggable ASN1 type.
@@ -43,7 +48,7 @@ public struct ASN1Any: DERParseable, BERParseable, DERSerializable, BERSerializa
     public init<ASN1Type: DERImplicitlyTaggable>(erasing: ASN1Type, withIdentifier identifier: ASN1Identifier) throws {
         var serializer = DER.Serializer()
         try erasing.serialize(into: &serializer, withIdentifier: identifier)
-        self._serializedBytes = ArraySlice(serializer._serializedBytes)
+        self.init(_serializedBytes: ArraySlice(serializer._serializedBytes))
     }
 
     public init(derEncoded rootNode: ASN1Node) {

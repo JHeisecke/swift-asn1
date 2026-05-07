@@ -294,6 +294,7 @@ extension ASN1 {
         @usableFromInline
         var wrapped: WrappedSequence
 
+        @usableFromInline
         init(_ wrapped: WrappedSequence) {
             self.wrapped = wrapped
         }
